@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/css/themes/all-themes.css" rel="stylesheet" />
+
+    <!-- Jquery Core Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/jquery/jquery.min.js"></script>
+
+</head>
+
+<body class="theme-indigo">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <f:if condition="{showSearch}">
+        <div class="search-bar">
+            <div class="search-icon">
+                <i class="material-icons">search</i>
+            </div>
+            <input type="text" placeholder="START TYPING...">
+            <div class="close-search">
+                <i class="material-icons">close</i>
+            </div>
+        </div>
+    </f:if>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="#">TYPO3 - CMS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Call Search -->
+                    <f:if condition="{showSearch}">
+                        <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    </f:if>
+                    <!-- #END# Call Search -->
+                    <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar" style="display:none!important;">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="http://www.gravatar.com/avatar/{f:cObject(typoscriptObjectPath:'lib.md5',data:beUser.email)}?s=80" width="48" height="48" alt="{beUser.username}" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{beUser.username}</div>
+                    <div class="email">{beUser.email}</div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="{f:uri.action(action:'beUserProfile',controller:'Worker')}"><i class="material-icons">person</i>Profile</a></li>
+                            <!-- <li role="seperator" class="divider"></li> -->
+                            <li><a href="{f:uri.action(action:'dashboard',controller:'Worker')}"><i class="material-icons">shopping_cart</i>Sales</a></li>
+                            <!-- <li role="seperator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active">
+                        <a href="{f:uri.action(action:'dashboard',controller:'Worker')}">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{f:uri.action(action:'config',controller:'Worker')}">
+                            <i class="material-icons">settings_power</i>
+                            <span>T3CMS Einstellungen</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/pages/typography.html">
+                            <i class="material-icons">text_fields</i>
+                            <span>Typography</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/pages/helper-classes.html">
+                            <i class="material-icons">layers</i>
+                            <span>Helper Classes</span>
+                        </a>
+                    </li>
+                    <li class="header">Website Status</li>
+                    <li><a href="javascript:void(0);"><i class="material-icons col-light-green">donut_large</i><span>ONLINE</span></a></li>
+                    <!-- <li><a href="javascript:void(0);"><i class="material-icons col-red">donut_large</i><span>Offline</span></a></li>
+                    <li><a href="javascript:void(0);"><i class="material-icons col-amber">donut_large</i><span>Maintenance</span></a></li> -->
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    <a href="javascript:void(0);">Theme: AdminBSB - Material Design</a>.
+                </div>
+                <div class="version">
+                    <b>Version: </b> 1.0.5
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+                <!-- <li role="presentation"><a href="#settings" data-toggle="tab">QUICK SETTINGS</a></li> -->
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+                    <ul class="demo-choose-skin">
+                        <li data-theme="red">
+                            <div class="red"></div>
+                            <span>Red</span>
+                        </li>
+                        <li data-theme="pink">
+                            <div class="pink"></div>
+                            <span>Pink</span>
+                        </li>
+                        <li data-theme="purple">
+                            <div class="purple"></div>
+                            <span>Purple</span>
+                        </li>
+                        <li data-theme="deep-purple">
+                            <div class="deep-purple"></div>
+                            <span>Deep Purple</span>
+                        </li>
+                        <li data-theme="indigo" class="active">
+                            <div class="indigo"></div>
+                            <span>Indigo</span>
+                        </li>
+                        <li data-theme="blue">
+                            <div class="blue"></div>
+                            <span>Blue</span>
+                        </li>
+                        <li data-theme="light-blue">
+                            <div class="light-blue"></div>
+                            <span>Light Blue</span>
+                        </li>
+                        <li data-theme="cyan">
+                            <div class="cyan"></div>
+                            <span>Cyan</span>
+                        </li>
+                        <li data-theme="teal">
+                            <div class="teal"></div>
+                            <span>Teal</span>
+                        </li>
+                        <li data-theme="green">
+                            <div class="green"></div>
+                            <span>Green</span>
+                        </li>
+                        <li data-theme="light-green">
+                            <div class="light-green"></div>
+                            <span>Light Green</span>
+                        </li>
+                        <li data-theme="lime">
+                            <div class="lime"></div>
+                            <span>Lime</span>
+                        </li>
+                        <li data-theme="yellow">
+                            <div class="yellow"></div>
+                            <span>Yellow</span>
+                        </li>
+                        <li data-theme="amber">
+                            <div class="amber"></div>
+                            <span>Amber</span>
+                        </li>
+                        <li data-theme="orange">
+                            <div class="orange"></div>
+                            <span>Orange</span>
+                        </li>
+                        <li data-theme="deep-orange">
+                            <div class="deep-orange"></div>
+                            <span>Deep Orange</span>
+                        </li>
+                        <li data-theme="brown">
+                            <div class="brown"></div>
+                            <span>Brown</span>
+                        </li>
+                        <li data-theme="grey">
+                            <div class="grey"></div>
+                            <span>Grey</span>
+                        </li>
+                        <li data-theme="blue-grey">
+                            <div class="blue-grey"></div>
+                            <span>Blue Grey</span>
+                        </li>
+                        <li data-theme="black">
+                            <div class="black"></div>
+                            <span>Black</span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="settings" style="display:none;">
+                    <div class="demo-settings">
+                        <p>GENERAL SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Cookie Consent</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Scroll to top</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>SYSTEM SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Maintenance Mode</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>PHP fpm</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- #END# Right Sidebar -->
+    </section>
+
+    <!-- Render Section from Template -->
+    <f:render section="Content" arguments="{foo: bar}" />
+
+    <!-- Bootstrap Core Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Autosize Plugin Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/autosize/autosize.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/bootstrap-notify/bootstrap-notify.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/jquery-countto/jquery.countTo.js"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/momentjs/moment.js"></script>
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+    <!-- Custom Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/js/admin.js"></script>
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/js/pages/index.js"></script>
+
+    <!-- Demo Js -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/js/demo.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="/typo3conf/ext/t3cms/Resources/Public/Skins/AdminBSBMaterialDesign/js/t3cms/custom.js"></script>
+
+</body>
+
+</html>

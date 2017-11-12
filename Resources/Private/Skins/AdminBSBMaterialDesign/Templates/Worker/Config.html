@@ -1,0 +1,446 @@
+<f:layout name="Full" />
+
+<f:section name="Content">
+
+    <style type="text/css">table.table-borderless td{border:none;}</style>
+
+
+
+    <section class="content" style="margin:100px 15px 0 15px;">
+        <div class="container-fluid">
+            <f:if condition="{currentPage}">
+                <f:then>
+                    <div class="block-header clearfix">
+                        <f:form id="confSaveForm" action="updateConfig" controller="Worker">
+                            <f:form.hidden name="uid" value="{currentPage.uid}" />
+                            <button type="submit" class="btn bg-light-green btn-circle-lg waves-effect waves-circle waves-float pull-right"><i class="material-icons">save</i></button>
+                        </f:form>
+                        <h2><strong>&lt;{currentPage.title}&gt;</strong></h2>
+                        <h2>T3THEMES Configuration</h2>
+                    </div>
+
+                    <div class="card" style="display:inline-block;">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs tab-nav-right">
+                            <li class="active"><a href="#tab-general" data-toggle="tab" aria-expanded="false">General</a></li>
+                            <li class=""><a href="#tab-header" data-toggle="tab" aria-expanded="false">Header</a></li>
+                            <li class=""><a href="#tab-sidebars" data-toggle="tab" aria-expanded="false">Sidebars</a></li>
+                            <li class=""><a href="#tab-footer" data-toggle="tab" aria-expanded="true">Footer</a></li>
+                            <li class=""><a href="#tab-dbvalue" data-toggle="tab" aria-expanded="true">DB Configuration Value</a></li>
+                        </ul>
+                    </div>
+                
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-general">
+                            <f:render section="CardGeneral" arguments="{_all}" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-header">
+                            <f:render section="CardHeader" arguments="{_all}" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-sidebars">
+                            <f:render section="CardSidebars" arguments="{_all}" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-footer">
+                            <f:render section="CardFooter" arguments="{_all}" />
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-dbvalue">
+                            <f:render section="CardDbValue" arguments="{_all}" />
+                        </div>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="block-header clearfix">
+                        <h2><strong>&lt;Please select a page in the pagetree first&gt;</strong></h2>
+                        <h2>T3THEMES Configuration</h2>
+                    </div>
+                </f:else>
+            </f:if>
+        </div>
+    </section>
+</f:section>
+
+<f:section name="CardGeneral">
+    <div class="card formengine-field-item">
+        <div class="header">
+            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseGeneral" aria-expanded="false" aria-controls="collapseGeneral">
+                <div class="col-xs-12 col-sm-6"><h2>Page options</h2></div>
+            </div>
+            <f:render section="CardHeaderOptions" arguments="{_all}" />
+        </div>
+        <div class="collapse in" id="collapseGeneral">
+            <div class="body">
+
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                        <tr class="hightlight>
+                            <td width="20%" style="border:none;">
+                                <label for="pageFullWidth">Content 100% Full Width</label>
+                            </td>
+                            <td style="border:none;">
+                                <select class="form-control show-tick t3themes-tca-field" name="pageFullWidth">
+                                    <option value="">Default or from page above</option>
+                                    <option value="nocontainer"><f:translate key="common.yes" default="Yes" /></option>
+                                    <option value="container"><f:translate key="common.no" default="No" /></option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</f:section>
+<f:section name="CardHeader">
+    <div class="card formengine-field-item">
+        <div class="header">
+            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">
+                <div class="col-xs-12 col-sm-6"><h2>Display &amp; content</h2></div>
+            </div>
+            <f:render section="CardHeaderOptions" arguments="{_all}" />
+        </div>
+        <div class="collapse in" id="collapseHeader">
+            <div class="body">
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                        <tr>
+                            <td width="20%">
+                                <label for="headerDisplay">Header Inhalt</label>
+                            </td>
+                            <td>
+                                <select class="form-control show-tick t3themes-tca-field" name="headerDisplay" onchange="showHeaderContent(this)">
+                                    <option value="">Default or from page above</option>
+                                    <option value="hide">Header verstecken</option>
+                                    <option value="shownav">Navigation</option>
+                                    <option value="showads">Ads / Code</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="headerContentNavigation">
+                            <td width="20%">
+                                <label for="headerTsnavigation">Navigationen verfügbar</label>
+                            </td>
+                            <td>
+                        <select class="form-control show-tick t3themes-tca-field" name="headerTsnavigation">
+                            {navigationHtmlOptions->f:format.raw()}
+                        </select>
+                            </td>
+                        </tr>
+                        <tr id="headerContentAds" class="">
+                            <td width="20%">
+                                <label for="headerContentAdsCode">Your Ads Code (HTML/JavaScript)</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="headerContentAdsCode" value="" placeholder="<script>... ..</script><div></div>">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card formengine-field-item">
+        <div class="header">
+            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">
+                <div class="col-xs-12 col-sm-6"><h2>Layout &amp; colors</h2></div>
+            </div>
+            <f:render section="CardHeaderOptions" arguments="{_all}" />
+        </div>
+        <div class="collapse in" id="collapseHeader">
+            <div class="body">
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="headerFullWidth">Header 100% Full Width</label>
+                            </td>
+                            <td>
+                                <select class="form-control show-tick t3themes-tca-field" name="headerFullWidth">
+                                    <option value="">Default or from page above</option>
+                                    <option value="nocontainer"><f:translate key="common.yes" default="Yes" /></option>
+                                    <option value="container"><f:translate key="common.no" default="No" /></option>
+                                    <option value="onlybg">Yes nur Hintergrund-farbe/bild</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="headerBgColor">Background Color</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="headerBgColor" value="" placeholder="blue or red or #eee">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="headerTextColor">Text Color</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="headerTextColor" value="" placeholder="blue or red or #eee">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="headerStyle">Header Stil</label>
+                            </td>
+                            <td>
+                                <select class="form-control show-tick t3themes-tca-field" name="headerStyle">
+                                    <option value="">Default or from page above</option>
+                                    <option value="1">Variant 1</option>
+                                    <option value="2">Variant 2</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card formengine-field-item">
+        <div class="header">
+            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">
+                <div class="col-xs-12 col-sm-6"><h2>Logo</h2></div>
+            </div>
+            <f:render section="CardHeaderOptions" arguments="{_all}" />
+        </div>
+        <div class="collapse in" id="collapseHeader">
+            <div class="body">
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="headerLogo">Logo Display</label>
+                            </td>
+                            <td>
+                                <select class="form-control show-tick t3themes-tca-field" name="headerLogo">
+                                    <option value="">Default or from page above</option>
+                                    <option value="hide">Hide Logo</option>
+                                    <option value="show">Show Logo</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="headerLogoUrl">Logo URL (Leave empty to use Default or from page above)</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="headerLogoUrl" value="" placeholder="/fileadmin/images/logo.jpg">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="headerLogoText">Logotext, Markenname (Leave empty to use Default or from page above)</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="headerLogoText" value="" placeholder="The Company">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="headerLogoBgColor">Logo Background Color (Leave empty to use Default or from page above)</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="headerLogoBgColor" value="" placeholder="blue or red or #eee or transparent">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</f:section>
+<f:section name="CardSidebars">
+    <div class="card formengine-field-item">
+        <div class="header">
+            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseSidebars" aria-expanded="false" aria-controls="collapseSidebars">
+                <div class="col-xs-12 col-sm-6"><h2>Display &amp; content</h2></div>
+            </div>
+            <f:render section="CardHeaderOptions" arguments="{_all}" />
+        </div>
+        <div class="collapse in" id="collapseSidebars">
+            <div class="body">
+
+                <div class="row hightlight clearfix">
+                    <div class="col-xs-12 col-sm-2">
+                        <label for="sidebarLeft">Sidebar Left</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-10">
+                        <select class="form-control show-tick t3themes-tca-field" name="sidebarLeft">
+                            <optgroup label="TYPO3">
+                                <option value="">Default or from page above</option>
+                                <option value="hide">No Sidebar</option>
+                                <option value="1">TYPO3 Left</option>
+                                <option value="2">TYPO3 Right</option>
+                            </optgroup>
+                            <optgroup label="TypoScript">
+                                {sidebarHtmlOptions->f:format.raw()}
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div class="row hightlight clearfix">
+                    <div class="col-xs-12 col-sm-2">
+                        <label for="sidebarRight">Sidebar Right</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-10">
+                        <select class="form-control show-tick t3themes-tca-field" name="sidebarRight">
+                            <optgroup label="TYPO3">
+                                <option value="">Default or from page above</option>
+                                <option value="hide">No Sidebar</option>
+                                <option value="1">TYPO3 Left</option>
+                                <option value="2">TYPO3 Right</option>
+                            </optgroup>
+                            <optgroup label="TypoScript">
+                                {sidebarHtmlOptions->f:format.raw()}
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</f:section>
+<f:section name="CardFooter">
+    <div class="card formengine-field-item">
+        <div class="header">
+            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseFooter" aria-expanded="false" aria-controls="collapseFooter">
+                <div class="col-xs-12 col-sm-6"><h2>Display &amp; content</h2></div>
+            </div>
+            <f:render section="CardHeaderOptions" arguments="{_all}" />
+        </div>
+        <div class="collapse in" id="collapseFooter">
+            <div class="body">
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="footerDisplay">Footer Anzeigen</label>
+                            </td>
+                            <td>
+                                <select class="form-control show-tick t3themes-tca-field" name="footerDisplay">
+                                    <option value="">Default or from page above</option>
+                                    <option value="hide">Hide Footer</option>
+                                    <option value="show">Show Footer Text &amp; Widgets</option>
+                                    <option value="hideWidgets">Show Footer Text only</option>
+                                    <option value="Ja"><f:translate key="common.yes" default="Yes" /></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="footerFullWidth">Footer 100% Full Width</label>
+                            </td>
+                            <td>
+                                <select class="form-control show-tick t3themes-tca-field" name="footerFullWidth">
+                                    <option value="">Default or from page above</option>
+                                    <option value="nocontainer"><f:translate key="common.yes" default="Yes" /></option>
+                                    <option value="container"><f:translate key="common.no" default="No" /></option>
+                                    <option value="onlybg">Yes nur Hintergrund-farbe/bild</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="hightlight">
+                            <td width="20%">
+                                <label for="footerBgColor">Background Color</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="footerBgColor" value="" placeholder="blue or red or #eee">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover table-borderless">
+                    <tbody>
+                        <tr>
+                            <td width="20%" class="hightlight">
+                                <label for="colPos1">Footer Columns 1</label><br/>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="colPos1" value="" placeholder="e.g. 10">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="hightlight">
+                                <label for="colPos2">Footer Columns 2</label><br/>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="colPos2" value="" placeholder="e.g. 11">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="hightlight">
+                                <label for="colPos3">Footer Columns 3</label><br/>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="colPos3" value="" placeholder="e.g. 12">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="hightlight">
+                                <label for="colPos4">Footer Columns 4</label><br/>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input class="form-control t3themes-tca-field" type="text" name="colPos4" value="" placeholder="e.g. 13">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</f:section>
+<f:section name="CardDbValue">
+    <b>T3themes Conf</b>
+    <textarea
+        rows="20"
+        id="t3themes_conf"
+        class="form-control"
+        readonly="readonly"
+        name="'t3themes_conf"
+        onchange="">{currentPage.t3themes_conf}</textarea>
+</f:section>
+
+<f:section name="CardHeaderOptions">
+    <ul class="header-dropdown m-r--5">
+        <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons">more_vert</i>
+            </a>
+            <ul class="dropdown-menu pull-right">
+                <li><a href="javascript:void(0);">Action</a></li>
+            </ul>
+        </li>
+    </ul>
+</f:section>
