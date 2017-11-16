@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="t3themes_cms" date="2017-11-11T21:20:35+00:00">
+		<header/>
+		<body>
+			<trans-unit id="flux.gridelements">
+				<source>Gridelements</source>
+			</trans-unit>
+
+			<trans-unit id="flux.gridTwoCol">
+				<source>2 Columns</source>
+			</trans-unit>
+			<trans-unit id="flux.gridThreeCol">
+				<source>3 Columns</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

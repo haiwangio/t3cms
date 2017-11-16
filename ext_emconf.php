@@ -1,7 +1,10 @@
 <?php
+
+# Extension Manager/Repository config file for ext: "t3cms"
+
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'TYPO3 Content Management System',
-	'description' => 'Inspired by high quality wordpress themes. EXT:t3cms combines -easy to use- with powerfull tools.',
+	'description' => 'Hardly inspired by high quality wordpress themes. EXT:t3cms combines -easy to use- with powerfull tools.',
 	'category' => 'module',
 	'author' => 'Salvatore Eckel',
 	'author_email' => 'salvaracer@gmx.de',

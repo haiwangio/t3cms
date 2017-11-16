@@ -70,7 +70,6 @@ class WorkerController extends AbstractController {
     	$this->view->assign('beUser', $beUser);
     	$this->view->assign('beUserCountAll', $beUserCountAll);
     	$this->view->assign('baseUrl', $baseUrl);
-    	$this->view->assign('pageSpeed', $pageSpeed);
     	$this->view->assign('currentPage', $currentPage);
 	}
 
