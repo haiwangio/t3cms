@@ -22,6 +22,10 @@
 			<trans-unit id="pages.t3themes_conf">
 				<source>readonly t3themes_conf</source>
 			</trans-unit>
+
+			<trans-unit id="langtest">
+				<source>locallang_db.xlf</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
