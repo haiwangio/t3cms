@@ -101,8 +101,10 @@ tt_content {
     default = TEXT
     default.value = |
     40 = TEXT
-    40.value = <div class="container">|</div>
+    40.value = <div class="{$t3cms.frontend.containerClass}">|</div>
     41 = TEXT
-    41.value = <div class="container-fluid">|</div>
+    41.value = <div class="{$t3cms.frontend.containerFluidClass}">|</div>
   }
 }
+lib.constants.t3cms.containerClass = TEXT
+lib.constants.t3cms.containerClass.value = {$t3cms.frontend.containerClass}

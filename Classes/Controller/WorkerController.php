@@ -2,12 +2,17 @@
 
 namespace SalvatoreEckel\T3cms\Controller;
 
+/**
+ * This file is part of the "T3cms" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 use TYPO3\CMS\Backend\Backend\Avatar\Avatar;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-#use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use SalvatoreEckel\T3cms\Utility\ExtensionUtility;
+use SalvatoreEckel\T3cms\Utility\QueryUtility;
 
 /**
  * WorkerController
@@ -46,57 +51,21 @@ class WorkerController extends AbstractController {
 		}
 
 	# Pages Count
-		$pagesCountAll = $this->countAllPages();
+		$pagesCountAll = QueryUtility::countAllPages();
 	# Get loaded t3themes_* extensions keys
-		$loadedThemes = $this->getLoadedExtensionsByPrefix('t3themes');
-		$loadedContents = $this->getLoadedExtensionsByPrefix('t3content');
+		$loadedThemes = ExtensionUtility::getLoadedExtensions( ['t3themes_'] , TRUE );
+		$loadedSeoExtensions = ExtensionUtility::getLoadedExtensions( ['mindshape_seo','yoast_seo','ce_seo','metaseo'] );
+		$loadedContents = ExtensionUtility::getLoadedExtensions( ['t3content_'] , TRUE );
 
-    	$this->view->assign('pagesCountAll', $pagesCountAll);
-    	$this->view->assign('loadedThemes', $loadedThemes);
-    	$this->view->assign('loadedContents', $loadedContents);
-    	$this->view->assign('beUser', $beUser);
-    	$this->view->assign('beUserCountAll', $beUserCountAll);
-    	$this->view->assign('baseUrl', $baseUrl);
-    	$this->view->assign('currentPage', $currentPage);
-	}
-
-	/**
-	 * Get the count of all pages
-	 *
-	 * @return int
-	 */
-	private function countAllPages()
-	{
-		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
-		$pagesCountAll = $queryBuilder
-		   ->count('uid')
-		   ->from('pages')
-		   // ->where()
-		   ->execute()
-		   ->fetchColumn(0);
-
-		return $pagesCountAll;
-	}
-
-	/**
-	 * Find extensions that begin with "t3themes_" and return an array only of loaded extensions
-	 *
-	 * @param string $prefix
-	 * @return array
-	 */
-	private function getLoadedExtensionsByPrefix($prefix)
-	{
-		$loadedExtensions = [];
-		foreach (scandir(PATH_typo3conf . 'ext/') as $key => $localExtKey) {
-		    if ((preg_match('/'.$prefix.'_/i', $localExtKey)) || $localExtKey == $prefix) {
-		    	if (ExtensionManagementUtility::isLoaded($localExtKey)) {
-					$loadedExtensions[$localExtKey] = $localExtKey;
-		    	}
-		    }
-		}
-		unset($loadedExtensions[$prefix]);
-
-		return $loadedExtensions;
+    	$this->view->assignMultiple([
+    		'pagesCountAll' => $pagesCountAll,
+    		'loadedThemes' => $loadedThemes,
+    		'loadedContents' => $loadedContents,
+    		'beUser' => $beUser,
+    		'beUserCountAll' => $beUserCountAll,
+    		'baseUrl' => $baseUrl,
+    		'currentPage' => $currentPage,
+    	]);
 	}
 
 	/**
@@ -125,25 +94,15 @@ class WorkerController extends AbstractController {
 		# Change this
 		$pageUid = intval($GLOBALS['_GET']['id']);
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
-        $queryBuilder->getRestrictions()->removeAll();
-        $currentPage = $queryBuilder
-            ->select('*')
-            ->from('pages')
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'uid',
-                    $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)
-                )
-            )
-            ->execute()
-            ->fetch();
+        $currentPage = QueryUtility::getPageByUid($pageUid);
 
-    	$this->view->assign('navigationHtmlOptions', $navigationHtmlOptions);
-    	$this->view->assign('sidebarHtmlOptions', $sidebarHtmlOptions);
-    	$this->view->assign('showSearch', TRUE);
-    	$this->view->assign('beUser', $beUser);
-    	$this->view->assign('currentPage', $currentPage);
+    	$this->view->assignMultiple([
+    		'navigationHtmlOptions' => $navigationHtmlOptions,
+    		'sidebarHtmlOptions' => $sidebarHtmlOptions,
+    		'showSearch' => TRUE,
+    		'beUser' => $beUser,
+    		'currentPage' => $currentPage
+    	]);
 	}
 
 	/**
@@ -162,7 +121,7 @@ class WorkerController extends AbstractController {
 
 		if (!empty($t3themesConf) && intval($uid) > 0) {
 	        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
-			// UPDATE `tt_content` SET `bodytext` = 'peter' WHERE `bodytext` = 'klaus'
+			// UPDATE `tt_content` SET `bodytext` = 'hans' WHERE `bodytext` = 'haus'
 			$queryBuilder
 			   ->update('pages')
 			   ->where(
@@ -194,83 +153,16 @@ class WorkerController extends AbstractController {
 		#$moduleUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
 
         if ($beUserUid > 0) {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_users');
-            $queryBuilder->getRestrictions()->removeAll();
-            $beUser = $queryBuilder
-                ->select('*')
-                ->from('be_users')
-                ->where(
-                    $queryBuilder->expr()->eq(
-                        'uid',
-                        $queryBuilder->createNamedParameter($beUserUid, \PDO::PARAM_INT)
-                    )
-                )
-                ->execute()
-                ->fetch();
+            $beUser = QueryUtility::getBeUserByUid($beUserUid);
         } else {
         	$beUser = $GLOBALS['BE_USER']->user;
     	}
 
-    	$this->view->assign('t3version', TYPO3_version);
-    	$this->view->assign('beUser', $beUser);
-    	$this->view->assign('beUserCountAll', $beUserCountAll);
-	}
-
-	/**
-	 * action tsnavigations
-	 *
-	 * @return void
-	 */
-	public function tsnavigationsAction() {
-		$htmlOptions = $this->getTsSetupAsHtmlOptions('navigations');;
-		echo $htmlOptions;
-		exit;
-	}
-
-	/**
-	 * action tssidebars
-	 *
-	 * @return void
-	 */
-	public function tssidebarsAction() {
-		$htmlOptions = $this->getTsSetupAsHtmlOptions('sidebars');;
-		echo $htmlOptions;
-		exit;
-	}
-
-	/**
-	 * Returns typoscript configuration as html options
-	 * Example: <option value="navigations.onepager">navigations.onepager</option>
-	 *          <option value="navigations.serviceNav">navigations.serviceNav</option>
-	 *
-     * @param string $typoscriptPath : e.g. navigations
-	 * @return string
-	 */
-	private function getTsSetupAsHtmlOptions($typoscriptPath) {
-		$TYPO3_CONF_VARS['SYS']['lockingMode'] = 'disable';
-		$GLOBALS['TSFE']->set_no_cache();
-
-		#\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($GLOBALS['TSFE']->tmpl->setup);
-
-		$htmlOptions = '';
-		$settingsArray = [];
-		$settings = $GLOBALS['TSFE']->tmpl->setup[$typoscriptPath.'.'];
-
-		# generating data array
-		if (is_array($settings)) {
-		    foreach ($GLOBALS['TSFE']->tmpl->setup[$typoscriptPath.'.'] as $tsKey => $setting) {
-		        $tsKey = $typoscriptPath.'.' . str_replace(".", "", $tsKey);
-		        $settingsArray[$tsKey] = $setting;
-		    }
-		}
-
-		# building html options
-		foreach ($settingsArray as $tsKey => $setting) {
-		    $tsName = !empty($setting['name']) ? $setting['name'] . ' (' . $tsKey.')' : $tsKey;
-		    $htmlOptions .= '<option value="'.$tsKey.'">'.$tsName.'</option>';
-		}
-
-		return $htmlOptions;
+    	$this->view->assignMultiple([
+    		't3version' => TYPO3_version,
+    		'beUser' => $beUser,
+    		'beUserCountAll' => $beUserCountAll
+    	]);
 	}
 
 }

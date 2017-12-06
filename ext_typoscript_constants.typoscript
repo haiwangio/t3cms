@@ -1,0 +1,6 @@
+t3cms.frontend {
+	# cat=fontend,classes//; type=string; label=Container Class
+	containerClass = container
+	# cat=fontend,classes//; type=string; label=Container Fluid Class
+	containerFluidClass = container-fluid
+}

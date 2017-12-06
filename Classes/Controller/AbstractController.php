@@ -1,30 +1,13 @@
 <?php
 namespace SalvatoreEckel\T3cms\Controller;
 
-/***************************************************************
+/**
+ * This file is part of the "T3cms" Extension for TYPO3 CMS.
+ * (c) 2017 Salvatore Eckel <salvaracer@gmx.de>
  *
- *  Copyright notice
- *
- *  (c) 2017 Salvatore Eckel <salvaracer@gmx.de>, ie
- *  
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * AbstractController
@@ -85,4 +68,62 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $header['content'] = $content;
         return $header;
     }
+
+    /**
+     * action tsnavigations
+     *
+     * @return void
+     */
+    public function tsnavigationsAction() {
+        $htmlOptions = $this->getTsSetupAsHtmlOptions('navigations');;
+        echo $htmlOptions;
+        exit;
+    }
+
+    /**
+     * action tssidebars
+     *
+     * @return void
+     */
+    public function tssidebarsAction() {
+        $htmlOptions = $this->getTsSetupAsHtmlOptions('sidebars');;
+        echo $htmlOptions;
+        exit;
+    }
+
+    /**
+     * Returns typoscript configuration as html options
+     * Example: <option value="navigations.onepager">navigations.onepager</option>
+     *          <option value="navigations.serviceNav">navigations.serviceNav</option>
+     *
+     * @param string $typoscriptPath : e.g. navigations
+     * @return string
+     */
+    private function getTsSetupAsHtmlOptions($typoscriptPath) {
+        $TYPO3_CONF_VARS['SYS']['lockingMode'] = 'disable';
+        $GLOBALS['TSFE']->set_no_cache();
+
+        #\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($GLOBALS['TSFE']->tmpl->setup);
+
+        $htmlOptions = '';
+        $settingsArray = [];
+        $settings = $GLOBALS['TSFE']->tmpl->setup[$typoscriptPath.'.'];
+
+        # generating data array
+        if (is_array($settings)) {
+            foreach ($GLOBALS['TSFE']->tmpl->setup[$typoscriptPath.'.'] as $tsKey => $setting) {
+                $tsKey = $typoscriptPath.'.' . str_replace(".", "", $tsKey);
+                $settingsArray[$tsKey] = $setting;
+            }
+        }
+
+        # building html options
+        foreach ($settingsArray as $tsKey => $setting) {
+            $tsName = !empty($setting['name']) ? $setting['name'] . ' (' . $tsKey.')' : $tsKey;
+            $htmlOptions .= '<option value="'.$tsKey.'">'.$tsName.'</option>';
+        }
+
+        return $htmlOptions;
+    }
+
 }

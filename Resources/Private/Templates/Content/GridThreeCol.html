@@ -6,58 +6,252 @@
 <f:layout name="Content"/>
 
 <f:section name="Configuration">
+
     <flux:form id="gridThreeCol" options="{group: 'Grid-Elements',Fluidcontent: {sorting:10}}" localLanguageFileRelativePath="/Resources/Private/Language/locallang_gridelements.xlf">
-		<flux:field.select name="settings.col1width"
-						   label="Column 1 Width"
-						   maxItems="1"
-						   items="{
-							1:{0:'1 / 12',1:'col-sm-1'},
-							2:{0:'2 / 12',1:'col-sm-2'},
-							3:{0:'3 / 12 (25%)',1:'col-sm-3'},
-							4:{0:'4 / 12 (33.33%)',1:'col-sm-4'},
-							5:{0:'5 / 12',1:'col-sm-5'},
-							6:{0:'6 / 12 (50%)',1:'col-sm-6'},
-							7:{0:'7 / 12',1:'col-sm-7'},
-							8:{0:'8 / 12 (66.66%)',1:'col-sm-8'},
-							9:{0:'9 / 12 (75%)',1:'col-sm-9'},
-							10:{0:'10 / 12',1:'col-sm-10'},
-							11:{0:'11 / 12',1:'col-sm-11'},
-							12:{0:'12 / 12 (100%)',1:'col-sm-12'}
-						   }"/>
-		<flux:field.select name="settings.col2width"
-						   label="Column 2 Width"
-						   maxItems="1"
-						   items="{
-							1:{0:'1 / 12',1:'col-sm-1'},
-							2:{0:'2 / 12',1:'col-sm-2'},
-							3:{0:'3 / 12 (25%)',1:'col-sm-3'},
-							4:{0:'4 / 12 (33.33%)',1:'col-sm-4'},
-							5:{0:'5 / 12',1:'col-sm-5'},
-							6:{0:'6 / 12 (50%)',1:'col-sm-6'},
-							7:{0:'7 / 12',1:'col-sm-7'},
-							8:{0:'8 / 12 (66.66%)',1:'col-sm-8'},
-							9:{0:'9 / 12 (75%)',1:'col-sm-9'},
-							10:{0:'10 / 12',1:'col-sm-10'},
-							11:{0:'11 / 12',1:'col-sm-11'},
-							12:{0:'12 / 12 (100%',1:'col-sm-12'}
-						   }"/>
-		<flux:field.select name="settings.col3width"
-						   label="Column 3 Width"
-						   maxItems="1"
-						   items="{
-							1:{0:'1 / 12',1:'col-sm-1'},
-							2:{0:'2 / 12',1:'col-sm-2'},
-							3:{0:'3 / 12 (25%)',1:'col-sm-3'},
-							4:{0:'4 / 12 (33.33%)',1:'col-sm-4'},
-							5:{0:'5 / 12',1:'col-sm-5'},
-							6:{0:'6 / 12 (50%)',1:'col-sm-6'},
-							7:{0:'7 / 12',1:'col-sm-7'},
-							8:{0:'8 / 12 (66.66%)',1:'col-sm-8'},
-							9:{0:'9 / 12 (75%)',1:'col-sm-9'},
-							10:{0:'10 / 12',1:'col-sm-10'},
-							11:{0:'11 / 12',1:'col-sm-11'},
-							12:{0:'12 / 12 (100%',1:'col-sm-12'}
-						   }"/>
+
+        <flux:form.sheet name="columnsSheet" label="Columns" variables="{_all}">
+			<flux:field.checkbox name="settings.advancedWidth"
+								 label="Advanced Settings"
+								 default="NULL"
+								 required=""
+								 requestUpdate="1" />
+
+			<flux:field.select name="settings.col1widthSm"
+							   label="Column 1 Width (>= small)"
+							   default="col-sm-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-sm-1'},
+								2:{0:'2 / 12',1:'col-sm-2'},
+								3:{0:'3 / 12 (25%)',1:'col-sm-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-sm-4'},
+								5:{0:'5 / 12',1:'col-sm-5'},
+								6:{0:'6 / 12 (50%)',1:'col-sm-6'},
+								7:{0:'7 / 12',1:'col-sm-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-sm-8'},
+								9:{0:'9 / 12 (75%)',1:'col-sm-9'},
+								10:{0:'10 / 12',1:'col-sm-10'},
+								11:{0:'11 / 12',1:'col-sm-11'},
+								12:{0:'12 / 12 (100%)',1:'col-sm-12'}
+							   }"/>
+			<flux:field.select name="settings.col2widthSm"
+							   label="Column 2 Width (>= small)"
+							   default="col-sm-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-sm-1'},
+								2:{0:'2 / 12',1:'col-sm-2'},
+								3:{0:'3 / 12 (25%)',1:'col-sm-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-sm-4'},
+								5:{0:'5 / 12',1:'col-sm-5'},
+								6:{0:'6 / 12 (50%)',1:'col-sm-6'},
+								7:{0:'7 / 12',1:'col-sm-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-sm-8'},
+								9:{0:'9 / 12 (75%)',1:'col-sm-9'},
+								10:{0:'10 / 12',1:'col-sm-10'},
+								11:{0:'11 / 12',1:'col-sm-11'},
+								12:{0:'12 / 12 (100%',1:'col-sm-12'}
+							   }"/>
+			<flux:field.select name="settings.col3widthSm"
+							   label="Column 3 Width (>= small)"
+							   default="col-sm-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-sm-1'},
+								2:{0:'2 / 12',1:'col-sm-2'},
+								3:{0:'3 / 12 (25%)',1:'col-sm-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-sm-4'},
+								5:{0:'5 / 12',1:'col-sm-5'},
+								6:{0:'6 / 12 (50%)',1:'col-sm-6'},
+								7:{0:'7 / 12',1:'col-sm-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-sm-8'},
+								9:{0:'9 / 12 (75%)',1:'col-sm-9'},
+								10:{0:'10 / 12',1:'col-sm-10'},
+								11:{0:'11 / 12',1:'col-sm-11'},
+								12:{0:'12 / 12 (100%',1:'col-sm-12'}
+							   }"/>
+
+			<flux:field.select name="settings.col1widthXs"
+							   label="Column 1 Width (>= 0px)"
+							   displayCond="FIELD:settings.advancedWidth:=:1"
+							   default="col-xs-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-xs-1'},
+								2:{0:'2 / 12',1:'col-xs-2'},
+								3:{0:'3 / 12 (25%)',1:'col-xs-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-xs-4'},
+								5:{0:'5 / 12',1:'col-xs-5'},
+								6:{0:'6 / 12 (50%)',1:'col-xs-6'},
+								7:{0:'7 / 12',1:'col-xs-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-xs-8'},
+								9:{0:'9 / 12 (75%)',1:'col-xs-9'},
+								10:{0:'10 / 12',1:'col-xs-10'},
+								11:{0:'11 / 12',1:'col-xs-11'},
+								12:{0:'12 / 12 (100%)',1:'col-xs-12'}
+							   }"/>
+			<flux:field.select name="settings.col2widthXs"
+							   label="Column 2 Width (>= 0px)"
+							   displayCond="FIELD:settings.advancedWidth:=:1"
+							   default="col-xs-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-xs-1'},
+								2:{0:'2 / 12',1:'col-xs-2'},
+								3:{0:'3 / 12 (25%)',1:'col-xs-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-xs-4'},
+								5:{0:'5 / 12',1:'col-xs-5'},
+								6:{0:'6 / 12 (50%)',1:'col-xs-6'},
+								7:{0:'7 / 12',1:'col-xs-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-xs-8'},
+								9:{0:'9 / 12 (75%)',1:'col-xs-9'},
+								10:{0:'10 / 12',1:'col-xs-10'},
+								11:{0:'11 / 12',1:'col-xs-11'},
+								12:{0:'12 / 12 (100%',1:'col-xs-12'}
+							   }"/>
+			<flux:field.select name="settings.col3widthXs"
+							   label="Column 3 Width (>= 0px)"
+							   displayCond="FIELD:settings.advancedWidth:=:1"
+							   default="col-xs-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-xs-1'},
+								2:{0:'2 / 12',1:'col-xs-2'},
+								3:{0:'3 / 12 (25%)',1:'col-xs-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-xs-4'},
+								5:{0:'5 / 12',1:'col-xs-5'},
+								6:{0:'6 / 12 (50%)',1:'col-xs-6'},
+								7:{0:'7 / 12',1:'col-xs-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-xs-8'},
+								9:{0:'9 / 12 (75%)',1:'col-xs-9'},
+								10:{0:'10 / 12',1:'col-xs-10'},
+								11:{0:'11 / 12',1:'col-xs-11'},
+								12:{0:'12 / 12 (100%',1:'col-xs-12'}
+							   }"/>
+
+			<flux:field.select name="settings.col1widthMd"
+							   label="Column 1 Width (>= medium)"
+							   displayCond="FIELD:settings.advancedWidth:=:1"
+							   default="col-md-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-md-1'},
+								2:{0:'2 / 12',1:'col-md-2'},
+								3:{0:'3 / 12 (25%)',1:'col-md-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-md-4'},
+								5:{0:'5 / 12',1:'col-md-5'},
+								6:{0:'6 / 12 (50%)',1:'col-md-6'},
+								7:{0:'7 / 12',1:'col-md-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-md-8'},
+								9:{0:'9 / 12 (75%)',1:'col-md-9'},
+								10:{0:'10 / 12',1:'col-md-10'},
+								11:{0:'11 / 12',1:'col-md-11'},
+								12:{0:'12 / 12 (100%)',1:'col-md-12'}
+							   }"/>
+			<flux:field.select name="settings.col2widthMd"
+							   label="Column 2 Width (>= medium)"
+							   displayCond="FIELD:settings.advancedWidth:=:1"
+							   default="col-md-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-md-1'},
+								2:{0:'2 / 12',1:'col-md-2'},
+								3:{0:'3 / 12 (25%)',1:'col-md-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-md-4'},
+								5:{0:'5 / 12',1:'col-md-5'},
+								6:{0:'6 / 12 (50%)',1:'col-md-6'},
+								7:{0:'7 / 12',1:'col-md-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-md-8'},
+								9:{0:'9 / 12 (75%)',1:'col-md-9'},
+								10:{0:'10 / 12',1:'col-md-10'},
+								11:{0:'11 / 12',1:'col-md-11'},
+								12:{0:'12 / 12 (100%',1:'col-md-12'}
+							   }"/>
+			<flux:field.select name="settings.col3widthMd"
+							   label="Column 3 Width (>= medium)"
+							   displayCond="FIELD:settings.advancedWidth:=:1"
+							   default="col-md-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-md-1'},
+								2:{0:'2 / 12',1:'col-md-2'},
+								3:{0:'3 / 12 (25%)',1:'col-md-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-md-4'},
+								5:{0:'5 / 12',1:'col-md-5'},
+								6:{0:'6 / 12 (50%)',1:'col-md-6'},
+								7:{0:'7 / 12',1:'col-md-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-md-8'},
+								9:{0:'9 / 12 (75%)',1:'col-md-9'},
+								10:{0:'10 / 12',1:'col-md-10'},
+								11:{0:'11 / 12',1:'col-md-11'},
+								12:{0:'12 / 12 (100%',1:'col-md-12'}
+							   }"/>
+
+			<flux:field.select name="settings.col1widthLg"
+							   label="Column 1 Width (>= large)"
+							   displayCond="FIELD:settings.advancedWidth:=:1"
+							   default="col-lg-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-lg-1'},
+								2:{0:'2 / 12',1:'col-lg-2'},
+								3:{0:'3 / 12 (25%)',1:'col-lg-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-lg-4'},
+								5:{0:'5 / 12',1:'col-lg-5'},
+								6:{0:'6 / 12 (50%)',1:'col-lg-6'},
+								7:{0:'7 / 12',1:'col-lg-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-lg-8'},
+								9:{0:'9 / 12 (75%)',1:'col-lg-9'},
+								10:{0:'10 / 12',1:'col-lg-10'},
+								11:{0:'11 / 12',1:'col-lg-11'},
+								12:{0:'12 / 12 (100%)',1:'col-lg-12'}
+							   }"/>
+			<flux:field.select name="settings.col2widthLg"
+							   label="Column 2 Width (>= large)"
+							   displayCond="FIELD:settings.advancedWidth:=:1"
+							   default="col-lg-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-lg-1'},
+								2:{0:'2 / 12',1:'col-lg-2'},
+								3:{0:'3 / 12 (25%)',1:'col-lg-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-lg-4'},
+								5:{0:'5 / 12',1:'col-lg-5'},
+								6:{0:'6 / 12 (50%)',1:'col-lg-6'},
+								7:{0:'7 / 12',1:'col-lg-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-lg-8'},
+								9:{0:'9 / 12 (75%)',1:'col-lg-9'},
+								10:{0:'10 / 12',1:'col-lg-10'},
+								11:{0:'11 / 12',1:'col-lg-11'},
+								12:{0:'12 / 12 (100%',1:'col-lg-12'}
+							   }"/>
+			<flux:field.select name="settings.col3widthLg"
+							   label="Column 3 Width (>= large)"
+							   displayCond="FIELD:settings.advancedWidth:=:1"
+							   default="col-lg-4"
+							   maxItems="1"
+							   items="{
+								1:{0:'1 / 12',1:'col-lg-1'},
+								2:{0:'2 / 12',1:'col-lg-2'},
+								3:{0:'3 / 12 (25%)',1:'col-lg-3'},
+								4:{0:'4 / 12 (33.33%)',1:'col-lg-4'},
+								5:{0:'5 / 12',1:'col-lg-5'},
+								6:{0:'6 / 12 (50%)',1:'col-lg-6'},
+								7:{0:'7 / 12',1:'col-lg-7'},
+								8:{0:'8 / 12 (66.66%)',1:'col-lg-8'},
+								9:{0:'9 / 12 (75%)',1:'col-lg-9'},
+								10:{0:'10 / 12',1:'col-lg-10'},
+								11:{0:'11 / 12',1:'col-lg-11'},
+								12:{0:'12 / 12 (100%',1:'col-lg-12'}
+							   }"/>
+
+    	</flux:form.sheet>
+        <flux:form.sheet name="cssClassesSheet" label="Extra Css Classes" variables="{_all}">
+	        <flux:field.input name="settings.rowClass" label="Row classes" />
+	        <flux:field.input name="settings.col1Class" label="Column 1 classes" />
+	        <flux:field.input name="settings.col2Class" label="Column 2 classes" />
+	        <flux:field.input name="settings.col3Class" label="Column 3 classes" />
+    	</flux:form.sheet>
 	    <flux:grid>
 	        <flux:grid.row>
 	            <flux:grid.column colspan="4" name="left" />
@@ -76,13 +270,13 @@
 
 <f:section name="Main">
     <div class="row">
-	    <div class="4u 12u(mobile)">
+	    <div class="4u 12u(mobile) {settings.col1Class}">
 	    	<flux:content.render area="left" />
 	    </div>
-	    <div class="4u 12u(mobile)">
+	    <div class="4u 12u(mobile) {settings.col2Class}">
 	    	<flux:content.render area="middle" />
 	    </div>
-	    <div class="4u 12u(mobile)">
+	    <div class="4u 12u(mobile) {settings.col3Class}">
 	    	<flux:content.render area="right" />
 	    </div>
     </div>

@@ -1,0 +1,79 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+      xmlns:se="http://typo3.org/ns/SalvatoreEckel/T3cms/ViewHelpers">
+
+<f:layout name="Content"/>
+
+<f:section name="Configuration">
+    <flux:form id="multiHeader" label="MultiHeader" options="{group:'T3cms',Fluidcontent: {sorting:10},icon:'EXT:t3cms/ext_icon.png'}" localLanguageFileRelativePath="/Resources/Private/Language/locallang_multiHeader.xlf">
+        <flux:form.sheet name="generalSheet" label="General" variables="{_all}">
+          <flux:field.input name="settings.headline"
+                            label="Headline Text"
+                            default="Cool Headerline!" />
+          <flux:field.select name="settings.headerType"
+                             label="Header Type"
+                             default="h2"
+                             items="{
+                                 0:{0:'Headline 1',1:'h1'},
+                                 1:{0:'Headline 2',1:'h2'},
+                                 2:{0:'Headline 3',1:'h3'},
+                                 3:{0:'Headline 4',1:'h4'},
+                                 4:{0:'Headline 5',1:'h5'},
+                                 5:{0:'Headline 6',1:'h6'},
+                                 5:{0:'Paragraph',1:'p'}
+                              }"/>
+          <flux:field.select name="settings.headerClasses"
+                             label="Design Class"
+                             default="fancy2"
+                             items="{
+                                 0:{0:'Fancy',1:'fancy'},
+                                 1:{0:'Fancy 2',1:'fancy2'},
+                                 2:{0:'New Orleans',1:'blaaaaa'},
+                                 3:{0:'Fresh 2018',1:'blaaaaa2'}
+                              }"/>
+          <flux:field.select name="settings.headerAlign"
+                             label="Text Align"
+                             default="text-align:center;"
+                             items="{
+                                 0:{0:'Auto',1:'text-align:auto;'},
+                                 1:{0:'Left',1:'text-align:left;'},
+                                 2:{0:'Center',1:'text-align:center;'},
+                                 3:{0:'Right',1:'text-align:right;'}
+                              }"/>
+        </flux:form.sheet>
+        <flux:form.sheet name="colorSheet" label="Colors" variables="{_all}">
+          <flux:field.input name="settings.textColor" label="Text color (optional)">
+            <flux:wizard.colorPicker label="'Color Picker'" hideParent="1" dim="'128x128'" width="256" height="256" exampleImg="'EXT:flux/Resources/Public/Icons/ColorWheel.png'"></flux:wizard.colorPicker>
+          </flux:field.input>
+          <flux:field.input name="settings.borderColor" label="Line Color (optional)">
+            <flux:wizard.colorPicker label="'Color Picker'" hideParent="1" dim="'128x128'" width="256" height="256" exampleImg="'EXT:flux/Resources/Public/Icons/ColorWheel.png'"></flux:wizard.colorPicker>
+          </flux:field.input>
+        </flux:form.sheet>
+    </flux:form>
+</f:section>
+
+<f:section name="Preview">
+    <small><strong>FCE: Multi Header</strong></small>
+    <hr/>
+    <{settings.headerType} class="{settings.headerClasses} custom_{record.uid}" style="{settings.headerAlign}">
+      <span style="{f:if(condition:settings.textColor,then:'color:{settings.textColor};',else:'')}">{settings.headline}</span>
+    </{settings.headerType}>
+    <f:render section="Css" arguments="{uid:record.uid,lineColor:'{f:if(condition:settings.borderColor,then:settings.borderColor)}'}" />
+</f:section>
+
+<f:section name="Main">
+    <{settings.headerType} class="{settings.headerClasses} custom_{record.uid}" style="{settings.headerAlign}">
+      <span style="{f:if(condition:settings.textColor,then:'color:{settings.textColor};',else:'')}">{settings.headline}</span>
+    </{settings.headerType}>
+    <f:render section="Css" arguments="{uid:record.uid,lineColor:'{f:if(condition:settings.borderColor,then:settings.borderColor)}'}" />
+</f:section>
+
+<f:section name="Css">
+  <f:comment>General style</f:comment>
+    <se:includeStyle name="multiHeader" css=".fancy span:before,.fancy span:after {content:'';position:absolute;height:5px;top:0.5em;width:200em;}.fancy2 span:before,.fancy2 span:after {content:'';position:absolute;height:5px;top:0.5em;width:200em;}.fancy span,.fancy2 span {display:inline-block;position:relative;}.fancy span:before,.fancy2 span:before {right:100%;margin-right:15px;}.fancy span:after,.fancy2 span:after {left:100%;margin-left:15px;}.fancy,.fancy2{overflow: hidden;}" />
+  <f:comment>Custom style</f:comment>
+    <se:includeStyle name="multiHeader_{uid}" css=".fancy.custom_{uid} span:before,.fancy.custom_{uid} span:after {border-bottom:1px solid {lineColor};border-top:0px solid {lineColor};}.fancy2.custom_{uid} span:before,.fancy2.custom_{uid} span:after {border-bottom:1px solid {lineColor};border-top:1px solid {lineColor};}" />
+</f:section>
+
+</div>
