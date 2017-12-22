@@ -9,6 +9,7 @@ namespace SalvatoreEckel\T3cms\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Backend\Backend\Avatar\Avatar;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use SalvatoreEckel\T3cms\Utility\ExtensionUtility;
@@ -164,5 +165,31 @@ class WorkerController extends AbstractController {
     		'beUserCountAll' => $beUserCountAll
     	]);
 	}
+
+	#############################
+	### AJAX ROUTES FOR PAGETYPES
+	#############################
+
+    /**
+     * action tsnavigations
+     *
+     * @return void
+     */
+    public function tsnavigationsAction() {
+        $htmlOptions = $this->getTsSetupAsHtmlOptions('navigations');;
+        echo $htmlOptions;
+        exit;
+    }
+
+    /**
+     * action tssidebars
+     *
+     * @return void
+     */
+    public function tssidebarsAction() {
+        $htmlOptions = $this->getTsSetupAsHtmlOptions('sidebars');;
+        echo $htmlOptions;
+        exit;
+    }
 
 }

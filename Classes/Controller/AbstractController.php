@@ -70,28 +70,6 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     }
 
     /**
-     * action tsnavigations
-     *
-     * @return void
-     */
-    public function tsnavigationsAction() {
-        $htmlOptions = $this->getTsSetupAsHtmlOptions('navigations');;
-        echo $htmlOptions;
-        exit;
-    }
-
-    /**
-     * action tssidebars
-     *
-     * @return void
-     */
-    public function tssidebarsAction() {
-        $htmlOptions = $this->getTsSetupAsHtmlOptions('sidebars');;
-        echo $htmlOptions;
-        exit;
-    }
-
-    /**
      * Returns typoscript configuration as html options
      * Example: <option value="navigations.onepager">navigations.onepager</option>
      *          <option value="navigations.serviceNav">navigations.serviceNav</option>
@@ -99,11 +77,9 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @param string $typoscriptPath : e.g. navigations
      * @return string
      */
-    private function getTsSetupAsHtmlOptions($typoscriptPath) {
+    protected function getTsSetupAsHtmlOptions($typoscriptPath) {
         $TYPO3_CONF_VARS['SYS']['lockingMode'] = 'disable';
         $GLOBALS['TSFE']->set_no_cache();
-
-        #\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($GLOBALS['TSFE']->tmpl->setup);
 
         $htmlOptions = '';
         $settingsArray = [];
@@ -121,6 +97,10 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         foreach ($settingsArray as $tsKey => $setting) {
             $tsName = !empty($setting['name']) ? $setting['name'] . ' (' . $tsKey.')' : $tsKey;
             $htmlOptions .= '<option value="'.$tsKey.'">'.$tsName.'</option>';
+        }
+
+        if (empty($htmlOptions)) {
+            $htmlOptions .= '<option  value="navigations.main">[ERROR] Ensure, that you load your navigations typoscript before the t3cms typoscript.</option>';
         }
 
         return $htmlOptions;

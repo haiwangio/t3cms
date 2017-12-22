@@ -19,10 +19,17 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  *
  * # Example: Basic example
  * <code>
- * <se:includeStyle value="{settings.cssFile}" />
+ * <se:includeStyle name="myContent" css=".card-bootstrap{color:red;}" />
+ * <se:includeStyle name="myContent" css=".card-bootstrap{color:lightgreen;}" /> <!-- Overwrites existing unique css -->
+ * <se:includeStyle name="MyContent_{uid}" css="#c{uid}.card-bootstrap{background:{settings.bgColor};color:{settings.textColor};}" /> <!-- Add more unique css -->
  * </code>
  * <output>
- * This will include the css style code provided by {settings} in the header
+ * <style type="text/css">
+ * //myContent
+ * .card-bootstrap{color:lightgreen;}
+ * //myContent_123
+ * #c123.card-bootstrap{background:#343434;color:#dedede;}
+ * </style>
  * </output>
  *
  */

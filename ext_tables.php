@@ -6,6 +6,7 @@ call_user_func(
     {
 
         if (TYPO3_MODE === 'BE' && !(TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_INSTALL)) {
+            $extConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['t3cms']);
 
             // Hijack: Typo3 default module listing order
             $GLOBALS['TBE_MODULES'] = array_merge(array('SalvatoreEckel' => ''), $GLOBALS['TBE_MODULES']);
@@ -19,20 +20,23 @@ call_user_func(
                 'name' => 'SalvatoreEckel', // New main module key as 'pw'
             );
 
-            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-                'SalvatoreEckel.T3cms',
-                'SalvatoreEckel', // Make module a submodule of 'SalvatoreEckel'
-                'dashboard', // Submodule key
-                '', // Position
-                [
-                    'Worker' => 'dashboard,config,ajax,beUserProfile,feUserProfile,tsnavigations,tssidebars'
-                ],
-                [
-                    'access' => 'user,group',
-                    'icon'   => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod_dashboard.png',
-                    'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_dashboard.xlf',
-                ]
-            );
+
+            if ($extConfiguration['enableT3cmsModule'] == 1) {
+                \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+                    'SalvatoreEckel.T3cms',
+                    'SalvatoreEckel', // Make module a submodule of 'SalvatoreEckel'
+                    'dashboard', // Submodule key
+                    '', // Position
+                    [
+                        'Worker' => 'dashboard,config,ajax,beUserProfile,feUserProfile,tsnavigations,tssidebars'
+                    ],
+                    [
+                        'access' => 'user,group',
+                        'icon'   => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod_dashboard.png',
+                        'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_dashboard.xlf',
+                    ]
+                );
+            }
 
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
                 'SalvatoreEckel.T3cms',

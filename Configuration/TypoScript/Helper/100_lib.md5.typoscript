@@ -1,0 +1,5 @@
+lib.md5 = TEXT
+lib.md5 {
+    stdWrap.hash = md5
+    current = 1
+}

@@ -1,4 +1,5 @@
 <?php
+namespace SalvatoreEckel\T3cms\DataProcessing;
 
 /*
  * This file is part of the package salvatore-eckel/t3cms.
@@ -6,8 +7,6 @@
  * For the full copyright and license information, please read the
  * LICENSE file that was distributed with this source code.
  */
-
-namespace SalvatoreEckel\T3cms\DataProcessing;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -40,24 +39,29 @@ class T3themesConfProcessor implements DataProcessorInterface
      */
     public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData)
     {
-        // The field name to process
-        $fieldName = $cObj->stdWrapValue('fieldName', $processorConfiguration);
-        if (empty($fieldName) && !$processedData['data']['t3themes_conf']) {
-            return $processedData;
-        } else {
-            $fieldName = 't3themes_conf';
-        }
+        # PageRepository
+        $sysPage = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Page\PageRepository::class);
+        $rootline = $sysPage->getRootLine(GeneralUtility::_GP('id'), '', true);
 
-        // Process json data
-        $originalValue = $processedData['data'][$fieldName];
-
-        // Set the target variable
+        $targetDbFieldName = $cObj->stdWrapValue('fieldName', $processorConfiguration);
         $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration);
-        if (!empty($targetVariableName)) {
-            $processedData[$targetVariableName] = $originalValue;
-        } else {
-            $processedData['data'][$fieldName] = $originalValue;
+
+        # Build and merge configuration upin rootpage
+        if (!empty($rootline)) {
+            $items = json_decode($rootline[0][$targetDbFieldName],1);
+            foreach (array_reverse($rootline) as $key => $page) {
+                $pageConf = json_decode($page[$targetDbFieldName],1);
+                if (count($pageConf)) {
+                    foreach ($pageConf as $name => $value) {
+                        if (!empty($value)) {
+                            $items[$name] = $value;
+                        }
+                    }
+                }
+            }
         }
+
+        $processedData[$targetVariableName] = $items;
 
         return $processedData;
     }

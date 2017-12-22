@@ -6,21 +6,28 @@
 
 ## Installation
 
-* die Extension ```t3cms``` im EM aktivieren
-* die Static Templates und PageTS im gewünschten Seitenbaum einbinden
+* die Extension ```t3cms``` installieren.
+* TypoScript Beispiel aus dieser in dein Projekt einbinden.
+* Testen :) {_ all->f:debug()} {t3themesConf->f:debug()}
 
+## Why & How
 
-## Es wurde eine Rootline Configuration für Themes eingeführt.
+### Es wurde eine Rootline Configuration für Themes eingeführt.
 
-In den Seiteneigenschaften jeder Seite lassen sich Einstellung setzen die das Theme/Layout beeinflussen. Leere Werte erben nicht leere Werte von Elternseiten.
+Es gibt ein neues Backend Modul, mit dem Sie neue Seiteneinstellungen erhalten. Mit den Einstellungen können Sie Anzeige von Content und das Frontend Layout steuern. Diese Einstellungen vererben sich hierarchisch im Seitenbaum.
 
+## Bau dieses TypoScript Setup Beispiel in dein Projekt ein.
 
-`` {namespace se=SalvatoreEckel\T3cms\ViewHelpers}
-`` <se:jsonDecode data="" as="t3themesConf">{t3themesConf->f:debug()}</se:jsonDecode>
-
-or 
-
-`` <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true" xmlns:dm="http://typo3.org/ns/SalvatoreEckel/T3cms/ViewHelpers">
-`` 		<se:jsonDecode data="" as="t3themesConf">{t3themesConf->f:debug()}</se:jsonDecode>
-`` </html>
-
+	...
+	10 = FLUIDTEMPLATE
+	10 {
+	    templateName = Default
+        #variables {}
+        dataProcessing {
+            30 = SalvatoreEckel\T3cms\DataProcessing\T3themesConfProcessor
+            30 {
+                fieldName = t3themes_conf
+                as = t3themesConf
+            }
+        }
+    ...

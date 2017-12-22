@@ -43,13 +43,14 @@ class QueryUtility
      */
     public static function getPageByUid($uid)
     {
+
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder->getRestrictions()->removeAll();
         $currentPage = $queryBuilder
             ->select('*')
             ->from('pages')
             ->where(
-                $queryBuilder->expr()->eq('uid',$queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid',$queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
             )
             ->execute()
             ->fetch();
@@ -71,7 +72,7 @@ class QueryUtility
             ->select('*')
             ->from('be_users')
             ->where(
-                $queryBuilder->expr()->eq('uid',$queryBuilder->createNamedParameter($beUserUid, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid',$queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
             )
             ->execute()
             ->fetch();
