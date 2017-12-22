@@ -7,7 +7,7 @@
 ## Installation
 
 * die Extension ```t3cms``` installieren.
-* TypoScript Beispiel aus dieser in dein Projekt einbinden.
+* TypoScript Beispiel aus dieser README in dein Projekt einbinden.
 * Testen :) {_ all->f:debug()} {t3themesConf->f:debug()}
 
 ## Why & How
