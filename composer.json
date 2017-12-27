@@ -1,0 +1,26 @@
+{
+	"name": "salvatore-eckel/t3cms",
+	"description": "TYPO3 Content Management",
+	"keywords": [
+		"typo3",
+		"t3cms"
+	],
+	"type": "typo3-cms-extension",
+    "homepage": "https://fenewmedia.de",
+	"support": {
+		"email": "salvaracer@gmx.de"
+	},
+	"authors": [
+		{
+			"name": "Salvatore Eckel",
+			"email": "salvaracer@gmx.de",
+			"role": "Developer"
+		}
+	],
+    "license": ["GPL-2.0+"],
+	"time": "2017-11-21",
+
+    "require": {
+        "typo3/cms-core": "^8.7"
+    }
+}
