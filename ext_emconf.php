@@ -2,9 +2,9 @@
 
 # Extension Manager/Repository config file for ext: "t3cms"
 
-$EM_CONF[$_EXTKEY] = array(
-	'title' => 'TYPO3 Content Management System',
-	'description' => 'Hardly inspired by high quality wordpress themes. EXT:t3cms combines -easy to use- with powerfull tools.',
+$EM_CONF[$_EXTKEY] = [
+	'title' => 'TYPO3 Content Management System - Set up your homepages easier wit it!',
+	'description' => 'Works with all famous dists and sitepackages. Hardly inspired by high quality wordpress themes. EXT:t3cms combines -easy to use- with powerfull tools.',
 	'category' => 'module',
 	'author' => 'Salvatore Eckel',
 	'author_email' => 'salvaracer@gmx.de',
@@ -14,14 +14,14 @@ $EM_CONF[$_EXTKEY] = array(
 	'uploadfolder' => 0,
 	'createDirs' => '',
 	'clearCacheOnLoad' => 1,
-	'version' => '1.1.1',
-	'constraints' => array(
-		'depends' => array(
+	'version' => '2.0.0',
+	'constraints' => [
+		'depends' => [
 			'typo3' => '8.7.4-9.99.99',
-		),
-		'conflicts' => array(
-		),
-		'suggests' => array(
-		),
-	),
-);
+		],
+		'conflicts' => [
+		],
+		'suggests' => [
+		],
+	],
+];

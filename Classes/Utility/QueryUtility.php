@@ -8,6 +8,7 @@ namespace SalvatoreEckel\T3cms\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -43,7 +44,6 @@ class QueryUtility
      */
     public static function getPageByUid($uid)
     {
-
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder->getRestrictions()->removeAll();
         $currentPage = $queryBuilder

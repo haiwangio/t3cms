@@ -19,12 +19,12 @@ use SalvatoreEckel\T3cms\Utility\QueryUtility;
  * WorkerController
  */
 class WorkerController extends AbstractController {
-    // id of selected page
+    # id of selected page
     protected $id;
  
     protected function initializeAction() {
         $this->id = (int)GeneralUtility::_GP('id');
-        // $configurationManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Configuration\\BackendConfigurationManager');
+        # $configurationManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Configuration\\BackendConfigurationManager');
     }
 
 	/**
@@ -80,19 +80,10 @@ class WorkerController extends AbstractController {
 		$navigationHtmlOptions = $result['content'];
 		$result2 = $this->get_web_page( 'http://' . $GLOBALS['_SERVER']['HTTP_HOST'] . '/?type=123457' );
 		$sidebarHtmlOptions = $result2['content'];
-
-		$color = (isset($PA['parameters']['color'])) ? $PA['parameters']['color'] : 'red';
-
-		$dbValue = json_decode($PA["itemFormElValue"],1);
-		$settings = $dbValue;
-
-
-
         $beUser = $this->backendUserRepository->findByUid(intval($GLOBALS['BE_USER']->user['uid']));
-
 		#$moduleUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
 
-		# Change this
+		# TODO: Change this
 		$pageUid = intval($GLOBALS['_GET']['id']);
 
         $currentPage = QueryUtility::getPageByUid($pageUid);
@@ -122,7 +113,7 @@ class WorkerController extends AbstractController {
 
 		if (!empty($t3themesConf) && intval($uid) > 0) {
 	        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
-			// UPDATE `tt_content` SET `bodytext` = 'hans' WHERE `bodytext` = 'haus'
+			# UPDATE `tt_content` SET `t3themes_conf` = 'hans' WHERE `t3themes_conf` = 'haus'
 			$queryBuilder
 			   ->update('pages')
 			   ->where(

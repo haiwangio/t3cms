@@ -93,6 +93,8 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             }
         }
 
+        $htmlOptions .= '<option value=""></option>';
+
         # building html options
         foreach ($settingsArray as $tsKey => $setting) {
             $tsName = !empty($setting['name']) ? $setting['name'] . ' (' . $tsKey.')' : $tsKey;

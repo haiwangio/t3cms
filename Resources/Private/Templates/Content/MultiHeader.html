@@ -6,7 +6,7 @@
 <f:layout name="Content"/>
 
 <f:section name="Configuration">
-    <flux:form id="multiHeader" label="MultiHeader" options="{group:'T3cms',Fluidcontent: {sorting:10},icon:'EXT:t3cms/ext_icon.png'}" localLanguageFileRelativePath="/Resources/Private/Language/locallang_multiHeader.xlf">
+    <flux:form id="multiHeader" label="MultiHeader" options="{group:'common',Fluidcontent: {sorting:10},icon:'EXT:t3cms/ext_icon.png'}" localLanguageFileRelativePath="/Resources/Private/Language/locallang_multiHeader.xlf">
         <flux:form.sheet name="generalSheet" label="General" variables="{_all}">
           <flux:field.input name="settings.headline"
                             label="Headline Text"
@@ -27,10 +27,8 @@
                              label="Design Class"
                              default="fancy2"
                              items="{
-                                 0:{0:'Fancy',1:'fancy'},
-                                 1:{0:'Fancy 2',1:'fancy2'},
-                                 2:{0:'New Orleans',1:'blaaaaa'},
-                                 3:{0:'Fresh 2018',1:'blaaaaa2'}
+                                 0:{0:'Style One Line',1:'fancy'},
+                                 1:{0:'Style Two Lines',1:'fancy2'}
                               }"/>
           <flux:field.select name="settings.headerAlign"
                              label="Text Align"
