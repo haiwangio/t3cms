@@ -56,12 +56,15 @@ class WorkerController extends AbstractController {
 	# Get loaded t3themes_* extensions keys
 		$loadedThemes = ExtensionUtility::getLoadedExtensions( ['t3themes_'] , TRUE );
 		$loadedSeoExtensions = ExtensionUtility::getLoadedExtensions( ['mindshape_seo','yoast_seo','ce_seo','metaseo'] );
+		$fluxLoaded = ExtensionUtility::getLoadedExtensions( ['flux'] );
 		$loadedContents = ExtensionUtility::getLoadedExtensions( ['t3content_'] , TRUE );
 
     	$this->view->assignMultiple([
     		'pagesCountAll' => $pagesCountAll,
     		'loadedThemes' => $loadedThemes,
     		'loadedContents' => $loadedContents,
+    		'fluxLoaded' => $fluxLoaded,
+    		'loadedSeoExtensions' => $loadedSeoExtensions,
     		'beUser' => $beUser,
     		'beUserCountAll' => $beUserCountAll,
     		'baseUrl' => $baseUrl,

@@ -52,37 +52,43 @@
                     </div>
                 </div>
             </div>
-            <f:if condition="{fluxLoaded}">
-                <f:then></f:then>
-                <f:else>
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="body bg-blue-grey">
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="body bg-blue-grey">
+                            <f:if condition="{fluxLoaded}">
+                                <f:then>
+                                    <div class="font-bold m-b--35">Wow, you've got the power!</div>
+                                    <ul class="dashboard-stat-list"><li>You are ready, to work woh tools like flux, dce &amp; mask.</li></ul>
+                                </f:then>
+                                <f:else>
                                     <div class="font-bold m-b--35"><f:translate key="dashboard.widgets.flux.title" default="ENABLE MORE POWER!" /></div>
                                     <ul class="dashboard-stat-list">
                                         <li>We recommend to install <a href="https://extensions.typo3.org/extension/flux/" target="_blank" style="color:white;text-decoration:underline;" title="Opens the TYPO3 Extension Repository">EXT:flux</a> and <a href="https://extensions.typo3.org/extension/fluidcontent/" target="_blank" style="color:white;text-decoration:underline;" title="Opens the TYPO3 Extension Repository">EXT:fluidcontent</a> to enable new powerful content elements for your website.</li>
                                     </ul>
-                                </div>
-                            </div>
+                                </f:else>
+                            </f:if>
                         </div>
-                    </f:else>
-                </f:if>
-                <f:if condition="{loadedSeoExtensions}">
-                    <f:then></f:then>
-                    <f:else>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="body bg-purple">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="body bg-purple">
+                            <f:if condition="{loadedSeoExtensions}">
+                                <f:then>
+                                    <div class="font-bold m-b--35">Google is your friend!</div>
+                                    <ul class="dashboard-stat-list"><li>You have installed a famous seo extension.</li></ul>
+                                </f:then>
+                                <f:else>
                                     <div class="font-bold m-b--35"><f:translate key="dashboard.widgets.seo.title" default="SEO and visibility" /></div>
                                     <ul class="dashboard-stat-list">
                                         <li>Make sure that you don't forget your SEO! We could not find a common seo extension in your system. Check out these extensions: <a href="https://extensions.typo3.org/extension/mindshape_seo/" target="_blank" style="color:white;text-decoration:underline;" title="Opens the TYPO3 Extension Repository">EXT:mindshape_seo</a>&emsp;<a href="https://extensions.typo3.org/extension/yoast_seo/" target="_blank" style="color:white;text-decoration:underline;" title="Opens the TYPO3 Extension Repository">EXT:yoast_seo</a>&emsp;<a href="https://extensions.typo3.org/extension/cs_seo/" target="_blank" style="color:white;text-decoration:underline;" title="Opens the TYPO3 Extension Repository">EXT:cs_seo</a>&emsp;<a href="https://extensions.typo3.org/extension/metaseo/" target="_blank" style="color:white;text-decoration:underline;" title="Opens the TYPO3 Extension Repository">EXT:metaseo</a></li>
                                     </ul>
-                                </div>
-                            </div>
+                                </f:else>
+                            </f:if>
                         </div>
-                    </f:else>
-                </f:if>
+                    </div>
+                </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="card">
                         <div class="body bg-teal">
