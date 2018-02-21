@@ -15,7 +15,7 @@
                             <f:form.hidden name="uid" value="{currentPage.uid}" />
                             <button type="submit" class="btn bg-light-green btn-circle-lg waves-effect waves-circle waves-float pull-right"><i class="material-icons">save</i></button>
                         </f:form>
-                        <h2><strong>&lt;{currentPage.title}&gt;</strong></h2>
+                        <h2><span title="page title" class="h4">{currentPage.title} <span title="page uid">[{currentPage.uid}]</span></strong></h2>
                         <h2>T3THEMES Configuration</h2>
                     </div>
 
@@ -436,9 +436,9 @@
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="material-icons">more_vert</i>
             </a>
-            <ul class="dropdown-menu pull-right">
+            <!-- <ul class="dropdown-menu pull-right">
                 <li><a href="javascript:void(0);">Action</a></li>
-            </ul>
+            </ul> -->
         </li>
     </ul>
 </f:section>

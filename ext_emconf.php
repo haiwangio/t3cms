@@ -3,7 +3,7 @@
 # Extension Manager/Repository config file for ext: "t3cms"
 
 $EM_CONF[$_EXTKEY] = [
-	'title' => 'TYPO3 Content Management System - Set up your homepages easier wit it!',
+	'title' => 'TYPO3 Content Management System - Set up your homepages easier with it!',
 	'description' => 'Works with all famous dists and sitepackages. Hardly inspired by high quality wordpress themes. EXT:t3cms combines -easy to use- with powerfull tools.',
 	'category' => 'module',
 	'author' => 'Salvatore Eckel',

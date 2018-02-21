@@ -136,30 +136,6 @@ class WorkerController extends AbstractController {
 		exit;
 	}
 
-	/**
-	 * beUserProfileAction
-	 *
-	 * @return void
-	 */
-	public function beUserProfileAction()
-	{
-		$beUserUid = intval($GLOBALS['BE_USER']->user['uid']);
-
-		#$moduleUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
-
-        if ($beUserUid > 0) {
-            $beUser = QueryUtility::getBeUserByUid($beUserUid);
-        } else {
-        	$beUser = $GLOBALS['BE_USER']->user;
-    	}
-
-    	$this->view->assignMultiple([
-    		't3version' => TYPO3_version,
-    		'beUser' => $beUser,
-    		'beUserCountAll' => $beUserCountAll
-    	]);
-	}
-
 	#############################
 	### AJAX ROUTES FOR PAGETYPES
 	#############################

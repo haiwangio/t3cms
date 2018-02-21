@@ -28,7 +28,7 @@ call_user_func(
                     'dashboard', // Submodule key
                     '', // Position
                     [
-                        'Worker' => 'dashboard,config,ajax,beUserProfile,feUserProfile,tsnavigations,tssidebars'
+                        'Worker' => 'dashboard,config,ajax,feUserProfile,tsnavigations,tssidebars'
                     ],
                     [
                         'access' => 'user,group',
@@ -44,11 +44,11 @@ call_user_func(
                 'options', // Submodule key
                 '', // Position
                 [
-                    'Worker' => 'config,updateConfig,dashboard,ajax,beUserProfile,feUserProfile,tsnavigations,tssidebars'
+                    'Worker' => 'config,updateConfig,dashboard,ajax,feUserProfile,tsnavigations,tssidebars'
                 ],
                 [
                     'access' => 'user,group',
-                    'icon'   => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod_options.svg',
+                    'icon'   => 'EXT:' . $extKey . '/Resources/Public/Icons/user_mod_options.png',
                     'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_options.xlf',
                 ]
             );
