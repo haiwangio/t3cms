@@ -115,11 +115,11 @@ $(document).ready(function() {
 function showHeaderContent(elem){
     switch (elem.value) {
         case "shownav":
-            document.getElementById("headerContentNavigation").style.display = "block";
+            document.getElementById("headerContentNavigation").style.display = "table-row";
             document.getElementById("headerContentAds").style.display = "none";
             break;
         case "showads":
-            document.getElementById("headerContentAds").style.display = "block";
+            document.getElementById("headerContentAds").style.display = "table-row";
             document.getElementById("headerContentNavigation").style.display = "none";
             break;
         case "hide":
