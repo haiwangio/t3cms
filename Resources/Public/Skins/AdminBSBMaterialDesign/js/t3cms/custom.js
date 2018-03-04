@@ -134,8 +134,8 @@ function showHeaderContent(elem){
 }
 
 function showSuccessMessage() {
-    alert("Successfully saved!");
+    top.TYPO3.Notification.success('Done.','Successfully saved!');
 }
 function showAutoCloseTimerMessage() {
-    alert("Something went wrong!");
+    top.TYPO3.Notification.error('Error.','Something went wrong!');
 }

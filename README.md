@@ -2,7 +2,7 @@
 
 ## TODOs
 
-.
+- Overwriting theme conf (templateRootPaths)
 
 ## Installation
 

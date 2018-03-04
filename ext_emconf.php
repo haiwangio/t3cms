@@ -4,7 +4,7 @@
 
 $EM_CONF[$_EXTKEY] = [
 	'title' => 'TYPO3 Content Management System - Set up your homepages easier with it!',
-	'description' => 'Works with all famous dists and sitepackages. Hardly inspired by high quality wordpress themes. EXT:t3cms combines -easy to use- with powerfull tools.',
+	'description' => 'Works with all famous dists and sitepackages. Hardly inspired by high quality wordpress themes. EXT:t3cms is the core and toolbox for TYPO3 themes.',
 	'category' => 'module',
 	'author' => 'Salvatore Eckel',
 	'author_email' => 'salvaracer@gmx.de',
@@ -22,6 +22,7 @@ $EM_CONF[$_EXTKEY] = [
 		'conflicts' => [
 		],
 		'suggests' => [
+			'flux' => '8.2.1-8.99.99',
 		],
 	],
 ];

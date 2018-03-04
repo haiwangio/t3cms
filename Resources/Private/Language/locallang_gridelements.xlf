@@ -13,6 +13,9 @@
 			<trans-unit id="flux.gridThreeCol">
 				<source>3 Columns</source>
 			</trans-unit>
+			<trans-unit id="flux.divDiv">
+				<source>div > div element with custom classes</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
