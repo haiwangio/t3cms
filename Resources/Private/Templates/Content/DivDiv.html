@@ -1,0 +1,37 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+      xmlns:se="http://typo3.org/ns/SalvatoreEckel/T3cms/ViewHelpers">
+
+<f:layout name="Content"/>
+
+<f:section name="Configuration">
+
+    <flux:form id="divDiv" options="{group: 'Grid-Elements',Fluidcontent: {sorting:70}}" localLanguageFileRelativePath="/Resources/Private/Language/locallang_gridelements.xlf">
+        <flux:form.sheet name="cssClassesSheet" label="Extra CSS classes" variables="{_all}">
+	        <flux:field.input name="settings.rowClass" label="CSS class for the outer <div>" />
+	        <flux:field.input name="settings.col1Class" label="CSS class for the inner <div>" />
+    	</flux:form.sheet>
+		<flux:grid>
+		    <flux:grid.row>
+		        <flux:grid.column colspan="12" name="main" />
+		    </flux:grid.row>
+		</flux:grid>
+    </flux:form>
+
+</f:section>
+
+<f:section name="Preview">
+div > div element with custom classes
+<hr/>
+</f:section>
+
+<f:section name="Main">
+    <div class="{settings.rowClass}">
+	    <div class="{settings.col1Class}">
+	    	<flux:content.render area="main" />
+	    </div>
+    </div>
+</f:section>
+
+</div>
