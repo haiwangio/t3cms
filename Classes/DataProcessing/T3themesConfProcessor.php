@@ -26,6 +26,11 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  * 10 {
  *   fieldName = t3themes_conf
  *   as = t3themesConf
+ *   rootpageId = TEXT
+ *   rootpageId {
+ *       insertData = 1
+ *       data = leveluid : 0
+ *   }
  * }
  */
 class T3themesConfProcessor implements DataProcessorInterface
@@ -41,7 +46,8 @@ class T3themesConfProcessor implements DataProcessorInterface
     {
         # PageRepository
         $sysPage = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Page\PageRepository::class);
-        $rootline = $sysPage->getRootLine(GeneralUtility::_GP('id'), '', true);
+        $pageId = (GeneralUtility::_GP('id') > 0) ? GeneralUtility::_GP('id') : $cObj->stdWrapValue('rootpageId', $processorConfiguration);
+        $rootline = $sysPage->getRootLine($pageId, '', true);
 
         $targetDbFieldName = $cObj->stdWrapValue('fieldName', $processorConfiguration);
         $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration);

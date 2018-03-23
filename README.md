@@ -28,6 +28,11 @@ Es gibt ein neues Backend Modul, mit dem Sie neue Seiteneinstellungen erhalten. 
             30 {
                 fieldName = t3themes_conf
                 as = t3themesConf
+                rootpageId = TEXT
+                rootpageId {
+                    insertData = 1
+                    data = leveluid : 0
+                }
             }
         }
     ...
