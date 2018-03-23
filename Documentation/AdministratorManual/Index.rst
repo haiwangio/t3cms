@@ -26,6 +26,11 @@ Add this typoscript code to your fluidtemplate setup:
 			30 {
 				fieldName = t3themes_conf
 				as = t3themesConf
+				rootpageId = TEXT
+				rootpageId {
+					insertData = 1
+					data = leveluid : 0
+				}
 			}
 		}
 	...
