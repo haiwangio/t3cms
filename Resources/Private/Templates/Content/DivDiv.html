@@ -9,8 +9,8 @@
 
     <flux:form id="divDiv" options="{group: 'Grid-Elements',Fluidcontent: {sorting:70}}" localLanguageFileRelativePath="/Resources/Private/Language/locallang_gridelements.xlf">
         <flux:form.sheet name="cssClassesSheet" label="Extra CSS classes" variables="{_all}">
-	        <flux:field.input name="settings.rowClass" label="CSS class for the outer <div>" />
-	        <flux:field.input name="settings.col1Class" label="CSS class for the inner <div>" />
+	        <flux:field.input name="settings.rowClass" label="CSS class for the outer <div>" default="card card-default" />
+	        <flux:field.input name="settings.col1Class" label="CSS class for the inner <div>" default="card-block" />
     	</flux:form.sheet>
 		<flux:grid>
 		    <flux:grid.row>
