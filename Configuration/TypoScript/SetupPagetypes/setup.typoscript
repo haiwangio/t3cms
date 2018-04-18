@@ -1,3 +1,4 @@
+# DEPRECATED
 # Get typoscript navigations as HTML options
     t3cmspageutilnavigations = PAGE
     t3cmspageutilnavigations {
@@ -21,6 +22,7 @@
         }
     }
 
+# DEPRECATED
 # Get typoscript sidebars as HTML options
     t3cmspageutilsidebars < t3cmspageutilnavigations
     t3cmspageutilsidebars.typeNum = 123457

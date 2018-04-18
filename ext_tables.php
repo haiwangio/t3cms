@@ -55,13 +55,12 @@ call_user_func(
 
         }
 
+        # DEPRECATED
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             'SalvatoreEckel.' . $extKey,
             'T3cms',
             'T3cms'
         );
-
-        #\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey,'Configuration/TypoScript/Static','T3cms demo typoscript');
 
     },
     $_EXTKEY

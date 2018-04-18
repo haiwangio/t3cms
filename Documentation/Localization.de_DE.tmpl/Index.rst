@@ -24,10 +24,10 @@ TYPO3 Content Management System - Set up your homepages easier with it! (Deutsch
 		de
 
 	:Beschreibung:
-		Geben Sie eine Beschreibung ein.
+		EXT:t3cms funktioniert nicht nur mit TYPO3 Themes sondern kann in jedem TYPO3 Projekt eingesetzt werden. Inspririert durch Premium WordPress Themes. EXT:t3cms ist der Kern und Toolbox für TYPO3 Themes.
 
 	:Schlüsselwörter:
-		komma-getrennte,Liste,von,Schlüsselwörtern
+		t3cms,typo3,themes,html,css
 
 	:Copyright:
 		2018
@@ -36,7 +36,7 @@ TYPO3 Content Management System - Set up your homepages easier with it! (Deutsch
 		Salvatore Eckel
 
 	:E-Mail:
-		author@example.com
+		salvaracer@gmx.de
 
 	:Lizenz:
 		Dieses Dokument wird unter der Open Content License, siehe

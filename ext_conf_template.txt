@@ -1,2 +1,2 @@
-# cat=basic/enable/01; type=boolean; label=Enable T3CMS Dashboard (alpha)
+# cat=basic/enable/01; type=boolean; label=Enable T3CMS Dashboard (beta)
 enableT3cmsModule = 0

@@ -1,5 +1,6 @@
 # Filename: setup.typoscript
 
+	# DEPRECATED
 	# For developing and testing
 	sidebars.demoSimple1 = TEXT
     sidebars.demoSimple1.value = <section class="box"><h2>Cool stuff</h2><p>Lorem ipsum sit dolor amet amen. Lorem ipsum sit dolor amet amen.</p></section>

@@ -3,7 +3,7 @@ namespace SalvatoreEckel\T3cms\Controller;
 
 /**
  * This file is part of the "T3cms" Extension for TYPO3 CMS.
- * (c) 2017 Salvatore Eckel <salvaracer@gmx.de>
+ * (c) 2017-2018 Salvatore Eckel <salvaracer@gmx.de>
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -29,6 +29,7 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     protected $backendUserRepository = NULL;
 
     /**
+     * DEPRECATED FUNCTION
      * get web page with curl
      *
      * @param string $url
@@ -70,6 +71,7 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     }
 
     /**
+     * DEPRECATED FUNCTION
      * Returns typoscript configuration as html options
      * Example: <option value="navigations.onepager">navigations.onepager</option>
      *          <option value="navigations.serviceNav">navigations.serviceNav</option>

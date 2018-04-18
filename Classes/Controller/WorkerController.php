@@ -79,6 +79,7 @@ class WorkerController extends AbstractController {
 	 */
 	public function configAction()
 	{
+		# DEPRECATED
 		$result = $this->get_web_page( 'http://' . $GLOBALS['_SERVER']['HTTP_HOST'] . '/?type=123456' );
 		$navigationHtmlOptions = $result['content'];
 		$result2 = $this->get_web_page( 'http://' . $GLOBALS['_SERVER']['HTTP_HOST'] . '/?type=123457' );
@@ -86,8 +87,7 @@ class WorkerController extends AbstractController {
         $beUser = $this->backendUserRepository->findByUid(intval($GLOBALS['BE_USER']->user['uid']));
 		#$moduleUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
 
-		# TODO: Change this
-		$pageUid = intval($GLOBALS['_GET']['id']);
+		$pageUid = $this->id;
 
         $currentPage = QueryUtility::getPageByUid($pageUid);
 

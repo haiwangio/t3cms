@@ -14,7 +14,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 /**
  * Minimal TypoScript configuration
- * Process field pi_flexform and overrides the values stored in data
+ * Process field t3themes_conf and overrides the values stored in data
  *
  * 10 = SalvatoreEckel\T3cms\DataProcessing\T3themesConfProcessor
  *

@@ -11,7 +11,7 @@
 Administrator Manual
 ====================
 
-Add this typoscript code to your fluidtemplate setup:
+Add the commented typoscript code to your fluidtemplate setup:
 
 .. code-block:: typoscript
     :linenos:
@@ -22,6 +22,7 @@ Add this typoscript code to your fluidtemplate setup:
 		templateName = Default
 		#variables {}
 		dataProcessing {
+			# START - ONLY ADD THIS PART
 			30 = SalvatoreEckel\T3cms\DataProcessing\T3themesConfProcessor
 			30 {
 				fieldName = t3themes_conf
@@ -32,6 +33,7 @@ Add this typoscript code to your fluidtemplate setup:
 					data = leveluid : 0
 				}
 			}
+			# END - ONLY ADD THIS PART
 		}
 	...
 
