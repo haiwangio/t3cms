@@ -2,7 +2,9 @@
 
 ## TODOs
 
-- Overwriting theme conf (templateRootPaths)
+- Overwriting theme conf via (templateRootPaths) [DONE]
+- Add base constants for the MenuProcessor
+- Rewrite t3temes_conf forms with TCA
 
 ## Installation
 
@@ -12,11 +14,11 @@
 
 ## Why & How
 
-### Es wurde eine Rootline Configuration für Themes eingeführt.
+### Zentrale Optionen für Themes als Rootline Configuration.
 
 Es gibt ein neues Backend Modul, mit dem Sie neue Seiteneinstellungen erhalten. Mit den Einstellungen können Sie Anzeige von Content und das Frontend Layout steuern. Diese Einstellungen vererben sich hierarchisch im Seitenbaum.
 
-## Bau dieses TypoScript Setup Beispiel in dein Projekt ein.
+## Bau dieses TypoScript Setup Beispiel in dein Projekt ein um in Fluidtemplates die Variablen zu benutzen.
 
 	...
 	10 = FLUIDTEMPLATE

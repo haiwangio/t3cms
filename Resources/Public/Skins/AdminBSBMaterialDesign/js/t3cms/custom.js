@@ -1,3 +1,6 @@
+function showSuccessMessage() { top.TYPO3.Notification.success('Done.','Successfully saved!'); }
+function showAutoCloseTimerMessage() { top.TYPO3.Notification.error('Error.','Something went wrong!'); }
+
 $(document).ready(function() {
 
     $('#confSaveForm').on('submit', function(e) {
@@ -113,29 +116,22 @@ $(document).ready(function() {
 });
 
 function showHeaderContent(elem){
-    switch (elem.value) {
-        case "shownav":
-            document.getElementById("headerContentNavigation").style.display = "table-row";
-            document.getElementById("headerContentAds").style.display = "none";
-            break;
-        case "showads":
-            document.getElementById("headerContentAds").style.display = "table-row";
-            document.getElementById("headerContentNavigation").style.display = "none";
-            break;
-        case "hide":
-            document.getElementById("headerContentNavigation").style.display = "none";
-            document.getElementById("headerContentAds").style.display = "none";
-            break;
-        default:
-            document.getElementById("headerContentNavigation").style.display = "none";
-            document.getElementById("headerContentAds").style.display = "none";
-            break;
+    var adsDom = document.getElementById('headerContentAds');
+    if (adsDom === null) {
+        switch (elem.value) {
+            case "shownav":
+                document.getElementById("headerContentAds").style.display = "none";
+                break;
+            case "showads":
+                document.getElementById("headerContentAds").style.display = "table-row";
+                break;
+            case "hide":
+                document.getElementById("headerContentAds").style.display = "none";
+                break;
+            default:
+                document.getElementById("headerContentAds").style.display = "none";
+                break;
+        }
     }
 }
 
-function showSuccessMessage() {
-    top.TYPO3.Notification.success('Done.','Successfully saved!');
-}
-function showAutoCloseTimerMessage() {
-    top.TYPO3.Notification.error('Error.','Something went wrong!');
-}

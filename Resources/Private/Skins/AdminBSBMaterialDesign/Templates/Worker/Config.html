@@ -94,12 +94,12 @@
 <f:section name="CardHeader">
     <div class="card formengine-field-item">
         <div class="header">
-            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">
+            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseHeader1" aria-expanded="false" aria-controls="collapseHeader1">
                 <div class="col-xs-12 col-sm-6"><h2>Display &amp; content</h2></div>
             </div>
             <f:render section="CardHeaderOptions" arguments="{_all}" />
         </div>
-        <div class="collapse in" id="collapseHeader">
+        <div class="collapse in" id="collapseHeader1">
             <div class="body">
                 <table class="table table-hover table-borderless">
                     <tbody>
@@ -114,19 +114,6 @@
                                     <option value="shownav">Navigation</option>
                                     <option value="showads">Ads / Code</option>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr id="headerContentNavigation">
-                            <td width="20%">
-                                <label for="headerTsnavigation">
-                                    Select TS navition (deprecated!)<br/>
-                                    TS navigations can no longer be set in this settings.
-                                </label>
-                            </td>
-                            <td>
-                        <select class="form-control show-tick t3themes-tca-field" name="headerTsnavigation">
-                            {navigationHtmlOptions->f:format.raw()}
-                        </select>
                             </td>
                         </tr>
                         <tr id="headerContentAds" class="">
@@ -148,12 +135,12 @@
     </div>
     <div class="card formengine-field-item">
         <div class="header">
-            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">
+            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseHeader2" aria-expanded="false" aria-controls="collapseHeader2">
                 <div class="col-xs-12 col-sm-6"><h2>Layout &amp; colors</h2></div>
             </div>
             <f:render section="CardHeaderOptions" arguments="{_all}" />
         </div>
-        <div class="collapse in" id="collapseHeader">
+        <div class="collapse in" id="collapseHeader2">
             <div class="body">
                 <table class="table table-hover table-borderless">
                     <tbody>
@@ -213,12 +200,12 @@
     </div>
     <div class="card formengine-field-item">
         <div class="header">
-            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseHeader" aria-expanded="false" aria-controls="collapseHeader">
+            <div class="row clearfix collapsed" data-toggle="collapse" data-target="#collapseHeader3" aria-expanded="false" aria-controls="collapseHeader3">
                 <div class="col-xs-12 col-sm-6"><h2>Logo</h2></div>
             </div>
             <f:render section="CardHeaderOptions" arguments="{_all}" />
         </div>
-        <div class="collapse in" id="collapseHeader">
+        <div class="collapse in" id="collapseHeader3">
             <div class="body">
                 <table class="table table-hover table-borderless">
                     <tbody>
@@ -436,9 +423,9 @@
 <f:section name="CardHeaderOptions">
     <ul class="header-dropdown m-r--5">
         <li class="dropdown">
-            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <!-- <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="material-icons">more_vert</i>
-            </a>
+            </a> -->
             <!-- <ul class="dropdown-menu pull-right">
                 <li><a href="javascript:void(0);">Action</a></li>
             </ul> -->

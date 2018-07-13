@@ -25,5 +25,7 @@ We drop the support to add typoscript-rendered menus (e.g. navitions.myextTopnav
 TODOs
 -----
 
-- Overwriting theme conf (templateRootPaths)
+- Overwriting theme conf via (templateRootPaths) [DONE]
+- Add base constants for the MenuProcessor
+- Rewrite t3temes_conf forms with TCA
 - Stabilizing
