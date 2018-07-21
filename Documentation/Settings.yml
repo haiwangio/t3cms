@@ -7,7 +7,7 @@ conf.py:
   copyright: 2018
   project: TYPO3 Content Management System - Set up your homepages easier with it!
   version: 3.0
-  release: 3.0.1
+  release: 3.0.2
   latex_documents:
   - - Index
     - t3cms.tex

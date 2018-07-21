@@ -28,7 +28,7 @@ call_user_func(
                     'dashboard', // Submodule key
                     '', // Position
                     [
-                        'Worker' => 'dashboard,config,ajax,feUserProfile,tsnavigations,tssidebars'
+                        'Worker' => 'dashboard,config,ajax,feUserProfile'
                     ],
                     [
                         'access' => 'user,group',
@@ -44,7 +44,7 @@ call_user_func(
                 'options', // Submodule key
                 '', // Position
                 [
-                    'Worker' => 'config,updateConfig,dashboard,ajax,feUserProfile,tsnavigations,tssidebars'
+                    'Worker' => 'config,updateConfig,dashboard,ajax,feUserProfile'
                 ],
                 [
                     'access' => 'user,group',

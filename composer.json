@@ -1,5 +1,5 @@
 {
-	"name": "salvatore-eckel/t3cms",
+	"name": "salvatoreeckel/t3cms",
 	"description": "TYPO3 Content Management",
 	"keywords": [
 		"typo3",
@@ -18,7 +18,7 @@
 		}
 	],
     "license": ["GPL-2.0+"],
-	"time": "2017-11-21",
+	"time": "2018-07-21",
 
     "require": {
         "typo3/cms-core": "^8.7"

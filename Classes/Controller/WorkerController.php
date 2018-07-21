@@ -38,7 +38,6 @@ class WorkerController extends AbstractController {
         $beUserCountAll = $this->backendUserRepository->countAll();
 
 		#$moduleUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
-		$baseUrl = 'http://'.$_SERVER['SERVER_NAME'].'/';
 
 		$pageRepository = $this->objectManager->get('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
 		# Change this
@@ -67,7 +66,6 @@ class WorkerController extends AbstractController {
     		'loadedSeoExtensions' => $loadedSeoExtensions,
     		'beUser' => $beUser,
     		'beUserCountAll' => $beUserCountAll,
-    		'baseUrl' => $baseUrl,
     		'currentPage' => $currentPage,
     	]);
 	}
@@ -79,11 +77,6 @@ class WorkerController extends AbstractController {
 	 */
 	public function configAction()
 	{
-		# DEPRECATED
-		$result = $this->get_web_page( 'http://' . $GLOBALS['_SERVER']['HTTP_HOST'] . '/?type=123456' );
-		$navigationHtmlOptions = $result['content'];
-		$result2 = $this->get_web_page( 'http://' . $GLOBALS['_SERVER']['HTTP_HOST'] . '/?type=123457' );
-		$sidebarHtmlOptions = $result2['content'];
         $beUser = $this->backendUserRepository->findByUid(intval($GLOBALS['BE_USER']->user['uid']));
 		#$moduleUrl = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
 
@@ -92,8 +85,6 @@ class WorkerController extends AbstractController {
         $currentPage = QueryUtility::getPageByUid($pageUid);
 
     	$this->view->assignMultiple([
-    		'navigationHtmlOptions' => $navigationHtmlOptions,
-    		'sidebarHtmlOptions' => $sidebarHtmlOptions,
     		'showSearch' => TRUE,
     		'beUser' => $beUser,
     		'currentPage' => $currentPage
@@ -116,7 +107,6 @@ class WorkerController extends AbstractController {
 
 		if (!empty($t3themesConf) && intval($uid) > 0) {
 	        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
-			# UPDATE `tt_content` SET `t3themes_conf` = 'hans' WHERE `t3themes_conf` = 'haus'
 			$queryBuilder
 			   ->update('pages')
 			   ->where(
@@ -135,31 +125,5 @@ class WorkerController extends AbstractController {
 		echo json_encode($response);
 		exit;
 	}
-
-	#############################
-	### AJAX ROUTES FOR PAGETYPES
-	#############################
-
-    /**
-     * action tsnavigations
-     *
-     * @return void
-     */
-    public function tsnavigationsAction() {
-        $htmlOptions = $this->getTsSetupAsHtmlOptions('navigations');;
-        echo $htmlOptions;
-        exit;
-    }
-
-    /**
-     * action tssidebars
-     *
-     * @return void
-     */
-    public function tssidebarsAction() {
-        $htmlOptions = $this->getTsSetupAsHtmlOptions('sidebars');;
-        echo $htmlOptions;
-        exit;
-    }
 
 }

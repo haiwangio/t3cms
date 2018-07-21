@@ -23,14 +23,6 @@ TCEFORM.tt_content {
 }
 ');
 
-# Enable frontend-context plugin
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'SalvatoreEckel.' . $_EXTKEY,
-	'T3cms',
-	array('Worker' => 'tsnavigations, tssidebars'),
-	array('Worker' => 'tsnavigations, tssidebars')
-);
-
 # Enable flux
 if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('flux')) {
 	\FluidTYPO3\Flux\Core::registerProviderExtensionKey('SalvatoreEckel.T3cms', 'Content');
